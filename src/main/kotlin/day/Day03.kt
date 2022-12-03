@@ -14,12 +14,11 @@ object Day03 : Day {
         .apply { check(this == examplePartTwoSolution) }
 
     override fun solvePartOne() = FileReader.getListByFile(3, FileType.INPUT).getCharScoresOne()
-
     override fun solvePartTwo() = FileReader.getListByFile(3, FileType.INPUT).getCharScoresTwo()
 
-    fun List<String>.getCharScoresOne() = this.map { it.splitAtHalf().inBoth().score() }.sum().toString()
+    private fun List<String>.getCharScoresOne() = this.sumOf { it.splitAtHalf().inBoth().score() }.toString()
 
-    fun List<String>.getCharScoresTwo() = this.splitInGroups().map { it.inAll().score() }.sum().toString()
+    private fun List<String>.getCharScoresTwo() = this.splitInGroups().sumOf { it.inAll().score() }.toString()
 
     private fun String.splitAtHalf() =
         this.substring(0..this.length / 2).toSet() to this.substring(this.length / 2).toSet()
