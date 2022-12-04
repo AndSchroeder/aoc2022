@@ -1,11 +1,8 @@
-import day.Day
-import day.Day01
-import day.Day02
-import day.Day03
+import day.*
 
 fun main(args: Array<String>) {
 
-  val days = listOf(Day01, Day02, Day03)
+  val days = listOf(Day01, Day02, Day03, Day04)
   days.forEach(::solveDay)
 }
 
