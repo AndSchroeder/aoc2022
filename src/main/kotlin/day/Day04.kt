@@ -1,20 +1,20 @@
 package day
 
-import util.FileReader
-import util.FileType
+import util.FileReader.getExampleList
+import util.FileReader.getInputList
 
 object Day04 : Day {
     override val examplePartOneSolution: String = "2"
     override val examplePartTwoSolution: String = "4"
 
-    override fun examplePartOne() = FileReader.getListByFile(4, FileType.EXAMPLE).getPairs().countSubRange()
+    override fun examplePartOne() = getExampleList(4).getPairs().countSubRange()
         .apply { check(this == examplePartOneSolution) }
 
-    override fun examplePartTwo() = FileReader.getListByFile(4, FileType.EXAMPLE).getPairs().countSubContent()
+    override fun examplePartTwo() = getExampleList(4).getPairs().countSubContent()
         .apply { check(this == examplePartTwoSolution) }
 
-    override fun solvePartOne() = FileReader.getListByFile(4, FileType.INPUT).getPairs().countSubRange()
-    override fun solvePartTwo() = FileReader.getListByFile(4, FileType.INPUT).getPairs().countSubContent()
+    override fun solvePartOne() = getInputList(4).getPairs().countSubRange()
+    override fun solvePartTwo() = getInputList(4).getPairs().countSubContent()
 
     private fun List<String>.getPairs() =
         this.map { team -> team.split(",").map { borders -> borders.split("-").map { border -> border.toInt() } } }
