@@ -43,8 +43,6 @@ object Day05 : Day {
         val (times, from, to ) = operations
         stacks[from].take(times).reversed().forEach {
             stacks[to].addFirst(it)
-        }
-        repeat(times) {
             stacks[from].removeFirst()
         }
     }
@@ -53,11 +51,11 @@ object Day05 : Day {
 
     private fun List<String>.getOperationsData() = this.filter{ it.contains("move")}
 
-    private fun List<String>.toInputList() = this.getStackData().map { row -> row.chunked(4).map { entry -> entry.replace("""\W""".toRegex(),"") } }
+    private fun List<String>.toInputList() =
+        this.getStackData().map { row -> row.chunked(4).map { entry -> entry.replace("""\W""".toRegex(),"") } }
 
     private fun List<List<String>>.toStack(): MutableList<ArrayDeque<String>> {
-        val entries = this.maxOf { it.size }
-        val stacks = MutableList(entries) {ArrayDeque<String>()}
+        val stacks = MutableList(this.maxOf { it.size }) {ArrayDeque<String>()}
         this.forEach {row ->
             row.forEachIndexed { index, entry ->
                 if (entry.isNotBlank()) {
@@ -73,9 +71,4 @@ object Day05 : Day {
     private fun String.toOperationInput() = this.split("""\D""".toRegex()).filter(String::isNotBlank).run {
         Triple(get(0).toInt(), get(1).toInt() - 1, get(2).toInt() -1)
     }
-
-
-
-
-
 }
