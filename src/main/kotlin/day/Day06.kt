@@ -16,22 +16,13 @@ object Day06 : Day {
     override fun solvePartOne() = FileReader.getInputList(6).findMarker(4)
     override fun solvePartTwo() = FileReader.getInputList(6).findMarker(14)
 
-    private fun List<String>.findMarker(length: Int) = this.first().toSequences(length).ofLength(length)
-
-    private fun MutableList<Set<Char>>.ofLength(length: Int): String {
-        this.forEachIndexed { index, set ->
-            if (set.size == length) {
+    private fun List<String>.findMarker(length: Int): String {
+        val list = this.first().toList()
+        list.forEachIndexed { index, _ ->
+            if (index + length <= list.size && list.subList(index, index + length).toSet().size == length) {
                 return (index + length).toString()
             }
         }
         return ""
     }
-
-    private fun String.toSequences(length: Int) =
-        mutableListOf<Set<Char>>().also { list ->
-            this.toList().forEachIndexed { index, _ ->
-                if (index + length <= this.length)
-                    list.add(this.toList().subList(index, index + length).toSet())
-            }
-        }
 }
