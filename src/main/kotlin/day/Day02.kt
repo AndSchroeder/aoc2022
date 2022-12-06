@@ -7,14 +7,14 @@ object Day02 : Day {
     override val examplePartOneSolution: String = "15"
     override val examplePartTwoSolution: String = "12"
 
-    override fun examplePartOne() = pointsPlay(getExampleList(2))
+    override fun examplePartOne() = pointsPlay(getExampleList("02"))
         .apply { check(this == examplePartOneSolution) }
 
-    override fun examplePartTwo() = pointsOutcome(getExampleList(2))
+    override fun examplePartTwo() = pointsOutcome(getExampleList("02"))
         .apply { check(this == examplePartTwoSolution) }
 
-    override fun solvePartOne() = pointsPlay(getInputList(2))
-    override fun solvePartTwo() = pointsOutcome(getInputList(2))
+    override fun solvePartOne() = pointsPlay(getInputList("02"))
+    override fun solvePartTwo() = pointsOutcome(getInputList("02"))
 
 
     private fun pointsPlay(list: List<String>) = list.map(this::matchWithPlay).sum().toString()

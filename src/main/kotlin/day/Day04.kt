@@ -7,14 +7,14 @@ object Day04 : Day {
     override val examplePartOneSolution: String = "2"
     override val examplePartTwoSolution: String = "4"
 
-    override fun examplePartOne() = getExampleList(4).getPairs().countSubRange()
+    override fun examplePartOne() = getExampleList("04").getPairs().countSubRange()
         .apply { check(this == examplePartOneSolution) }
 
-    override fun examplePartTwo() = getExampleList(4).getPairs().countSubContent()
+    override fun examplePartTwo() = getExampleList("04").getPairs().countSubContent()
         .apply { check(this == examplePartTwoSolution) }
 
-    override fun solvePartOne() = getInputList(4).getPairs().countSubRange()
-    override fun solvePartTwo() = getInputList(4).getPairs().countSubContent()
+    override fun solvePartOne() = getInputList("04").getPairs().countSubRange()
+    override fun solvePartTwo() = getInputList("04").getPairs().countSubContent()
 
     private fun List<String>.getPairs() =
         this.map { team -> team.split(",").map { borders -> borders.split("-").map { border -> border.toInt() } } }

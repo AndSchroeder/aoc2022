@@ -7,14 +7,14 @@ object Day05 : Day {
     override val examplePartOneSolution: String = "CMZ"
     override val examplePartTwoSolution: String = "MCD"
 
-    override fun examplePartOne() = FileReader.getExampleList(5).organizeOne()
+    override fun examplePartOne() = FileReader.getExampleList("05").organizeOne()
         .apply { check(this == examplePartOneSolution) }
 
-    override fun examplePartTwo() = FileReader.getExampleList(5).organizeTwo()
+    override fun examplePartTwo() = FileReader.getExampleList("05").organizeTwo()
         .apply { check(this == examplePartTwoSolution) }
 
-    override fun solvePartOne() = FileReader.getInputList(5).organizeOne()
-    override fun solvePartTwo() = FileReader.getInputList(5).organizeTwo()
+    override fun solvePartOne() = FileReader.getInputList("05").organizeOne()
+    override fun solvePartTwo() = FileReader.getInputList("05").organizeTwo()
 
 
     private fun List<String>.organizeOne(): String {

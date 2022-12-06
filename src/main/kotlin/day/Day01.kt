@@ -7,14 +7,14 @@ object Day01 : Day {
     override val examplePartOneSolution: String = "24000"
     override val examplePartTwoSolution: String = "45000"
 
-    override fun examplePartOne() = getMaxElf(getExampleList(1))
+    override fun examplePartOne() = getMaxElf(getExampleList("01"))
         .apply { check(this == examplePartOneSolution) }
 
-    override fun examplePartTwo() = getMaxElves(getExampleList(1))
+    override fun examplePartTwo() = getMaxElves(getExampleList("01"))
         .apply { check(this == examplePartTwoSolution) }
 
-    override fun solvePartOne() = getMaxElf(getInputList(1))
-    override fun solvePartTwo() = getMaxElves(getInputList(1))
+    override fun solvePartOne() = getMaxElf(getInputList("01"))
+    override fun solvePartTwo() = getMaxElves(getInputList("01"))
 
     private fun getMaxElf(list: List<String>) = getElves(list).max().toString()
 
