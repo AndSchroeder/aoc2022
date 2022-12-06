@@ -19,9 +19,7 @@ object Day06 : Day {
     private fun List<String>.findMarker(length: Int): String {
         val list = this.first().toList()
         list.forEachIndexed { index, _ ->
-            if (index + length <= list.size && list.subList(index, index + length).toSet().size == length) {
-                return (index + length).toString()
-            }
+            if (list.subList(index, index + length).toSet().size == length) return (index + length).toString()
         }
         return ""
     }
