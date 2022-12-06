@@ -32,13 +32,13 @@ object Day05 : Day {
     private fun List<String>.organize() =
         this.getStackData().toInputList().toStack() to this.getOperationsData().getOperations()
 
-
     private fun handleOperationOne(stacks: List<ArrayDeque<String>>, operations: Triple<Int, Int, Int>) {
         val (times, from, to ) = operations
         repeat(times) {
             stacks[to].addFirst(stacks[from].removeFirst())
         }
     }
+
     private fun handleOperationTwo(stacks: List<ArrayDeque<String>>, operations: Triple<Int, Int, Int>) {
         val (times, from, to ) = operations
         stacks[from].take(times).reversed().forEach {
