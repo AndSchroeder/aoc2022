@@ -66,36 +66,37 @@ object Day07 : Day {
             current.findDirectory(name)!!
         }
     }
-}
+    data class ElfDirectory(
+        val name: String,
+        val files: MutableList<ElfFile> = mutableListOf(),
+        val directories: MutableList<ElfDirectory> = mutableListOf(),
+        val parent: ElfDirectory?
+    ) {
+        fun size(): Long {
+            return files.sumOf(ElfFile::size) + directories.sumOf { it.size()}
+        }
 
-data class ElfDirectory(
-    val name: String,
-    val files: MutableList<ElfFile> = mutableListOf(),
-    val directories: MutableList<ElfDirectory> = mutableListOf(),
-    val parent: ElfDirectory?
-) {
-    fun size(): Long {
-        return files.sumOf(ElfFile::size) + directories.sumOf { it.size()}
-    }
+        fun findDirectory(name: String) = directories.find { it.name == name }
+        private fun findFile(name: String) = files.find { it.name == name }
 
-    fun findDirectory(name: String) = directories.find { it.name == name }
-    private fun findFile(name: String) = files.find { it.name == name }
+        fun createFile(input: String) {
+            val (size, name) = input.split(" ")
+            if (findFile(name) == null) {
+                files.add(ElfFile(name = name, size = size.toLong()))
+            }
+        }
 
-    fun createFile(input: String) {
-        val (size, name) = input.split(" ")
-        if (findFile(name) == null) {
-            files.add(ElfFile(name = name, size = size.toLong()))
+        fun createDirectory(name: String) {
+            if (findDirectory(name) == null) {
+                directories.add(ElfDirectory(name = name, parent = this))
+            }
         }
     }
 
-    fun createDirectory(name: String) {
-        if (findDirectory(name) == null) {
-            directories.add(ElfDirectory(name = name, parent = this))
-        }
-    }
+    data class ElfFile(
+        val name: String,
+        val size: Long,
+    )
 }
 
-data class ElfFile(
-    val name: String,
-    val size: Long,
-)
+
