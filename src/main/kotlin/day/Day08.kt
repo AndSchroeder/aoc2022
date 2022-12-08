@@ -19,19 +19,25 @@ object Day08 : Day {
     private fun List<String>.getGrid() = this.map { row -> row.toList().map { value -> value.toString().toInt() } }
 
     private fun List<List<Int>>.solveOne() =
-        this.mapIndexed { y, list -> list.mapIndexed { x, value -> isVisible(x, y, value, this) } }.flatten()
-            .count { it }.toString()
-
-    private fun List<List<Int>>.solveTwo() =
-        this.mapIndexed { y, list -> list.mapIndexed { x, value -> canSee(x, y, value, this) } }.flatten().max()
+        this.mapIndexed { y, list -> list.mapIndexed { x, value -> isVisible(x, y, value, this) } }
+            .flatten()
+            .count { it }
             .toString()
 
-    private fun isVisible(x: Int, y: Int, value: Int, grid: List<List<Int>>) = getBeforeX(x, grid[y]).visible(value) ||
+    private fun List<List<Int>>.solveTwo() =
+        this.mapIndexed { y, list -> list.mapIndexed { x, value -> canSee(x, y, value, this) } }
+            .flatten()
+            .max()
+            .toString()
+
+    private fun isVisible(x: Int, y: Int, value: Int, grid: List<List<Int>>) =
+        getBeforeX(x, grid[y]).visible(value) ||
             getAfterX(x, grid[y]).visible(value) ||
             getBeforeY(x, y, grid).visible(value) ||
             getAfterY(x, y, grid).visible(value)
 
-    private fun canSee(x: Int, y: Int, value: Int, grid: List<List<Int>>) = getBeforeX(x, grid[y]).canSee(value) *
+    private fun canSee(x: Int, y: Int, value: Int, grid: List<List<Int>>) =
+        getBeforeX(x, grid[y]).canSee(value) *
             getAfterX(x, grid[y]).canSee(value) *
             getBeforeY(x, y, grid).canSee(value) *
             getAfterY(x, y, grid).canSee(value)
