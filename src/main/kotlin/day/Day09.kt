@@ -18,9 +18,8 @@ object Day09 : Day {
 
     class RopeGrid(private val input: List<String>)  {
 
-        private val fields = mutableListOf(RopeField(0,0, 1))
+        private val fields = mutableListOf<RopeField>(RopeField(0,0, 1))
         private val knots = mutableListOf<RopeField>()
-        private val maxIndex = fields.size - 2
 
         fun solveOne() = solve(2)
 
@@ -55,12 +54,12 @@ object Day09 : Day {
         private fun go(newHead: RopeField, index: Int) {
             if (newHead.far(knots[index + 1])) {
                 knots[index + 1] = getNewField(newHead, knots[index + 1])
-                if (index == maxIndex) {
-                    knots[index + 1].visit()
+                if (index == knots.maxIndex()) {
+                    knots[index + 1].vistedTimes += 1
                 }
             }
             knots[index] = newHead
-            if (index < maxIndex) {
+            if (index < knots.maxIndex()) {
                 go(knots[index + 1], index + 1)
             }
         }
@@ -86,10 +85,6 @@ object Day09 : Day {
 
         fun far(other: RopeField) = (this.x - other.x).absoluteValue > 1 || (this.y - other.y).absoluteValue > 1
 
-        fun visit() {
-            vistedTimes += 1
-        }
-
         override fun toString(): String {
             return "x: $x, y: $y, visited: $vistedTimes"
         }
@@ -98,4 +93,6 @@ object Day09 : Day {
     fun MutableList<RopeField>.findOrCreate(x: Long, y: Long): RopeField {
         return find { field -> field.x == x && field.y == y } ?: RopeField(x, y).also { field -> add(field) }
     }
+
+    fun MutableList<RopeField>.maxIndex() = size - 2
 }
