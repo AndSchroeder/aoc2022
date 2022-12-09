@@ -51,5 +51,3 @@ object Day08 : Day {
     private fun List<Int>.visible(value: Int) = all { it < value } || isEmpty()
     private fun List<Int>.canSee(value: Int) = takeWhile { it < value }.size + if (any { it >= value }) 1 else 0
 }
-
-
