@@ -16,9 +16,9 @@ object Day09 : Day {
     override fun solvePartOne() = RopeGrid(FileReader.getInputList("09")).solveOne()
     override fun solvePartTwo() = RopeGrid(FileReader.getInputList("09")).solveTwo()
 
-    class RopeGrid(private val input: List<String>)  {
+    class RopeGrid(private val input: List<String>) {
 
-        private val fields = mutableListOf<RopeField>(RopeField(0,0, 1))
+        private val fields = mutableListOf<RopeField>(RopeField(0, 0, 1))
         private val knots = mutableListOf<RopeField>()
 
         fun solveOne() = solve(2)
@@ -26,23 +26,22 @@ object Day09 : Day {
         fun solveTwo() = solve(10)
 
         private fun solve(amount: Int): String {
-            repeat(amount) {
-                knots.add(fields.first())
-            }
+            repeat(amount) { knots.add(fields.first()) }
             input.forEach { action ->
-                val operation = action.split(" ").first()
-                val times = action.split(" ").last().toInt()
+                val (operation, times) = action.split(" ")
                 operate(operation, times)
             }
-            return fields.filter { it.vistedTimes > 0 }.size.toString()
+            return fields.filter { it.visitedTimes > 0 }.size.toString()
         }
 
-        private fun operate(operation: String, times: Int) {
-            when (operation) {
-                "R" ->  repeat(times) { goRight(knots.first()) }
-                "L" ->  repeat(times) { goLeft(knots.first()) }
-                "U" ->  repeat(times) { goUp(knots.first()) }
-                "D" ->  repeat(times) { goDown(knots.first()) }
+        private fun operate(operation: String, times: String) {
+            repeat(times.toInt()) {
+                when (operation) {
+                    "R" -> goRight(knots.first())
+                    "L" -> goLeft(knots.first())
+                    "U" -> goUp(knots.first())
+                    "D" -> goDown(knots.first())
+                }
             }
         }
 
@@ -54,17 +53,13 @@ object Day09 : Day {
         private fun go(newHead: RopeField, index: Int) {
             if (newHead.far(knots[index + 1])) {
                 knots[index + 1] = getNewField(newHead, knots[index + 1])
-                if (index == knots.maxIndex()) {
-                    knots[index + 1].vistedTimes += 1
-                }
+                if (index == knots.maxIndex()) knots[index + 1].visitedTimes += 1
             }
             knots[index] = newHead
-            if (index < knots.maxIndex()) {
-                go(knots[index + 1], index + 1)
-            }
+            if (index < knots.maxIndex()) go(knots[index + 1], index + 1)
         }
 
-        private fun getNewField(previous: RopeField, current: RopeField): RopeField  {
+        private fun getNewField(previous: RopeField, current: RopeField): RopeField {
             val xDiffer = previous.x - current.x
             val yDiffer = previous.y - current.y
             return when {
@@ -81,13 +76,9 @@ object Day09 : Day {
         }
     }
 
-    class RopeField(val x: Long, val y: Long, var vistedTimes: Long = 0) {
+    class RopeField(val x: Long, val y: Long, var visitedTimes: Long = 0) {
 
         fun far(other: RopeField) = (this.x - other.x).absoluteValue > 1 || (this.y - other.y).absoluteValue > 1
-
-        override fun toString(): String {
-            return "x: $x, y: $y, visited: $vistedTimes"
-        }
     }
 
     fun MutableList<RopeField>.findOrCreate(x: Long, y: Long): RopeField {
