@@ -21,24 +21,15 @@ object Day10 : Day {
     override fun solvePartTwo() = FileReader.getInputList("10").solveTwo()
 
 
-    private fun List<String>.solveOne() = ElfMachine().let { machine ->
-        machine.operate(this)
-        machine.solveOne()
-    }
+    private fun List<String>.solveOne() = ElfMachine().operate(this).solveOne()
 
-    private fun List<String>.solveTwo() = ElfMachine().let { machine ->
-        machine.operate(this)
-        machine.solveTwo()
-    }
+    private fun List<String>.solveTwo() = ElfMachine().operate(this).solveTwo()
 
+    class ElfMachine(private val states: MutableList<ElfState> = mutableListOf()) {
 
-    class ElfMachine(val states: MutableList<ElfState> = mutableListOf()) {
+        fun operate(commands: List<String>) = commands.forEach(::operate).let { this }
 
-        fun operate(commands: List<String>) = commands.forEach(::operate)
-
-        fun solveOne() = listOf(20, 60, 100, 140, 180, 220).sumOf {
-            getSignalStrength(it)
-        }.toString()
+        fun solveOne() = listOf(20, 60, 100, 140, 180, 220).sumOf(::getSignalStrength).toString()
 
         fun solveTwo() = states.chunked(40).joinToString("\n") { chunk ->
             chunk.mapIndexed { index, elfState ->
