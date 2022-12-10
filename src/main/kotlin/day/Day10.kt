@@ -21,12 +21,12 @@ object Day10 : Day {
     override fun solvePartTwo() = FileReader.getInputList("10").solveTwo()
 
 
-    fun List<String>.solveOne() = ElfMachine().let { machine ->
+    private fun List<String>.solveOne() = ElfMachine().let { machine ->
         machine.operate(this)
         machine.solveOne()
     }
 
-    fun List<String>.solveTwo() = ElfMachine().let { machine ->
+    private fun List<String>.solveTwo() = ElfMachine().let { machine ->
         machine.operate(this)
         machine.solveTwo()
     }
