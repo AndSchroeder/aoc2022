@@ -50,7 +50,7 @@ object Day11 : Day {
     }
 
     private fun String.getOperation() = when {
-        matches("""^\D+$""".toRegex()) -> MonkeyOperation.MonkeySquare(0)
+        matches("""^\D+$""".toRegex()) -> MonkeyOperation.MonkeySquare()
         contains("*") -> MonkeyOperation.MonkeyMultiply(lastLong())
         contains("+") -> MonkeyOperation.MonkeyAdd(lastLong())
         else -> error("should not be reached")
@@ -63,7 +63,7 @@ object Day11 : Day {
         it.reduce { acc, number -> acc * number }
     }
 
-    data class Monkey(
+    class Monkey(
         val items: MutableList<Long>,
         val operationType: MonkeyOperation,
         val divisibleNumber: Int,
@@ -79,15 +79,15 @@ object Day11 : Day {
     sealed class MonkeyOperation(open val constant: Long) {
         abstract fun operate(operand: Long): Long
 
-        data class MonkeyAdd(override val constant: Long) : MonkeyOperation(constant) {
+        class MonkeyAdd(override val constant: Long) : MonkeyOperation(constant) {
             override fun operate(operand: Long) = constant + operand
         }
 
-        data class MonkeyMultiply(override val constant: Long) : MonkeyOperation(constant) {
+        class MonkeyMultiply(override val constant: Long) : MonkeyOperation(constant) {
             override fun operate(operand: Long) = constant * operand
         }
 
-        data class MonkeySquare(override val constant: Long) : MonkeyOperation(constant) {
+        class MonkeySquare : MonkeyOperation(0) {
             override fun operate(operand: Long) = operand * operand
         }
     }
