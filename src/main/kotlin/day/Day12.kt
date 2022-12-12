@@ -48,15 +48,6 @@ object Day12 : Day {
             }
         }
 
-        fun find(x: Int, y: Int, z: Int) = coordinates.find { it.x == x && it.y == y && it.z <= z + 1 }
-
-        fun neighbors(coordinate: HeightCoordinate) = listOfNotNull(
-            find(coordinate.x - 1, coordinate.y, coordinate.z),
-            find(coordinate.x + 1, coordinate.y, coordinate.z),
-            find(coordinate.x, coordinate.y - 1, coordinate.z),
-            find(coordinate.x, coordinate.y + 1, coordinate.z),
-        )
-
         fun dijkstra(coordinate: HeightCoordinate) {
             coordinate.visited = true
             val costs = coordinate.costs + 1
@@ -64,10 +55,17 @@ object Day12 : Day {
             firstUnvisted()?.let { dijkstra(it) }
         }
 
-        fun firstUnvisted() =
+        private fun find(x: Int, y: Int, z: Int) = coordinates.find { it.x == x && it.y == y && it.z <= z + 1 }
+
+        private fun neighbors(coordinate: HeightCoordinate) = listOfNotNull(
+            find(coordinate.x - 1, coordinate.y, coordinate.z),
+            find(coordinate.x + 1, coordinate.y, coordinate.z),
+            find(coordinate.x, coordinate.y - 1, coordinate.z),
+            find(coordinate.x, coordinate.y + 1, coordinate.z),
+        )
+
+        private fun firstUnvisted() =
             coordinates.filterNot(HeightCoordinate::visited).sortedBy(HeightCoordinate::costs).firstOrNull()
-
-
     }
 
     data class HeightCoordinate(
