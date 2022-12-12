@@ -31,19 +31,11 @@ object Day12 : Day {
         fun fillList(list: List<String>, partTwo: Boolean = false) {
             list.forEachIndexed { indexY, row ->
                 row.forEachIndexed { indexX, heightChar ->
-                    val height = when (heightChar) {
-                        'S' -> 0
-                        'E' -> 25
-                        else -> heightChar - 'a'
-                    }
-                    val coordinate = HeightCoordinate(indexX, indexY, height)
+                    val coordinate = HeightCoordinate(indexX, indexY, heightChar.height())
                     coordinates.add(coordinate)
-                    if (heightChar == 'S') {
-                        start = coordinate
-                        start.costs = 0
-                    }
+                    if (heightChar == 'S') { start = coordinate }
                     if (heightChar == 'E') end = coordinate
-                    if ((partTwo && height == 0)) coordinate.costs = 0
+                    if ((partTwo && heightChar.height() == 0) || heightChar == 'S') coordinate.costs = 0
                 }
             }
         }
@@ -52,7 +44,7 @@ object Day12 : Day {
             coordinate.visited = true
             val costs = coordinate.costs + 1
             neighbors(coordinate).filter { it.costs > costs }.forEach { it.costs = costs }
-            firstUnvisted()?.let { dijkstra(it) }
+            firstUnvisited()?.let { dijkstra(it) }
         }
 
         private fun find(x: Int, y: Int, z: Int) = coordinates.find { it.x == x && it.y == y && it.z <= z + 1 }
@@ -64,7 +56,7 @@ object Day12 : Day {
             find(coordinate.x, coordinate.y + 1, coordinate.z),
         )
 
-        private fun firstUnvisted() =
+        private fun firstUnvisited() =
             coordinates.filterNot(HeightCoordinate::visited).sortedBy(HeightCoordinate::costs).firstOrNull()
     }
 
@@ -75,6 +67,9 @@ object Day12 : Day {
         var costs: Int = Int.MAX_VALUE,
         var visited: Boolean = false
     )
+    private fun Char.height() = when (this) {
+        'S' -> 0
+        'E' -> 25
+        else -> this - 'a'
+    }
 }
-
-
