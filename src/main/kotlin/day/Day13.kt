@@ -27,7 +27,6 @@ object Day13 : Day("13", "13", "140") {
                 elfList.list.add(newList)
                 parseStep(newList, input.shorten())
             }
-
             input.startsWith("]") -> parseStep(elfList.parent, input.shorten())
             input.startsWith(",") -> parseStep(elfList, input.shorten())
             input.isBlank() -> return
@@ -59,8 +58,7 @@ object Day13 : Day("13", "13", "140") {
         private fun ElfList.compare(other: ElfList): Int {
             val (thisIterator, otherIterator) = this.list.iterator() to other.list.iterator()
             while (thisIterator.hasNext() && otherIterator.hasNext()) {
-                val result = thisIterator.next() compareTo otherIterator.next()
-                if (result != 0) return result
+               thisIterator.next().compareTo(otherIterator.next()).also { result -> if (result != 0) return result}
             }
             return thisIterator.hasNext() compareTo otherIterator.hasNext()
         }
