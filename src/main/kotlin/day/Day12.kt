@@ -26,7 +26,9 @@ object Day12 : Day("12", "31", "29") {
                 row.forEachIndexed { indexX, heightChar ->
                     val coordinate = HeightCoordinate(indexX, indexY, heightChar.height())
                     coordinates.add(coordinate)
-                    if (heightChar == 'S') { start = coordinate }
+                    if (heightChar == 'S') {
+                        start = coordinate
+                    }
                     if (heightChar == 'E') end = coordinate
                     if ((partTwo && heightChar.height() == 0) || heightChar == 'S') coordinate.costs = 0
                 }
@@ -60,6 +62,7 @@ object Day12 : Day("12", "31", "29") {
         var costs: Int = Int.MAX_VALUE,
         var visited: Boolean = false
     )
+
     private fun Char.height() = when (this) {
         'S' -> 0
         'E' -> 25

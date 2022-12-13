@@ -5,11 +5,8 @@ abstract class Day(
     val examplePartOneSolution: String,
     val examplePartTwoSolution: String
 ) {
-
     abstract fun examplePartOne(): String
     abstract fun examplePartTwo(): String
     abstract fun solvePartOne(): String
     abstract fun solvePartTwo(): String
-
-
 }

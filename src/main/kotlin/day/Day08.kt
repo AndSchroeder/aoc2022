@@ -24,15 +24,15 @@ object Day08 : Day("08", "21", "8") {
 
     private fun isVisible(x: Int, y: Int, value: Int, grid: List<List<Int>>) =
         getBeforeX(x, grid[y]).visible(value) ||
-            getAfterX(x, grid[y]).visible(value) ||
-            getBeforeY(x, y, grid).visible(value) ||
-            getAfterY(x, y, grid).visible(value)
+                getAfterX(x, grid[y]).visible(value) ||
+                getBeforeY(x, y, grid).visible(value) ||
+                getAfterY(x, y, grid).visible(value)
 
     private fun canSee(x: Int, y: Int, value: Int, grid: List<List<Int>>) =
         getBeforeX(x, grid[y]).canSee(value) *
-            getAfterX(x, grid[y]).canSee(value) *
-            getBeforeY(x, y, grid).canSee(value) *
-            getAfterY(x, y, grid).canSee(value)
+                getAfterX(x, grid[y]).canSee(value) *
+                getBeforeY(x, y, grid).canSee(value) *
+                getAfterY(x, y, grid).canSee(value)
 
     private fun getBeforeX(x: Int, list: List<Int>) = list.subList(0, x).reversed()
     private fun getAfterX(x: Int, list: List<Int>) = list.subList(x + 1, list.size)

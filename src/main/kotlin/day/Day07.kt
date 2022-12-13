@@ -15,7 +15,7 @@ object Day07 : Day("07", "95437", "24933642") {
     private fun ElfDirectory.solveOne(): String {
         val list = mutableListOf<Pair<String, Long>>()
         getDirectorySize(list, this)
-        val solution = list.filter { it.second <= 100_000 }.sumOf{ it.second }.toString()
+        val solution = list.filter { it.second <= 100_000 }.sumOf { it.second }.toString()
         root = ElfDirectory("/", parent = null)
         current = root
         return solution
@@ -32,14 +32,14 @@ object Day07 : Day("07", "95437", "24933642") {
         return solution
     }
 
-    private fun List<String>.interpret() = forEach { interpret(it)}.let { root }
+    private fun List<String>.interpret() = forEach { interpret(it) }.let { root }
 
     private fun interpret(input: String) {
         with(input) {
             when {
-                startsWith("$ cd") -> changeDirectory(replace("$ cd ",""))
+                startsWith("$ cd") -> changeDirectory(replace("$ cd ", ""))
                 startsWith("$ ls") -> Unit
-                startsWith("dir") -> current.createDirectory(replace("dir ",""))
+                startsWith("dir") -> current.createDirectory(replace("dir ", ""))
                 else -> current.createFile(input)
             }
         }
@@ -59,6 +59,7 @@ object Day07 : Day("07", "95437", "24933642") {
             current.findDirectory(name)!!
         }
     }
+
     data class ElfDirectory(
         val name: String,
         val files: MutableList<ElfFile> = mutableListOf(),
@@ -66,7 +67,7 @@ object Day07 : Day("07", "95437", "24933642") {
         val parent: ElfDirectory?
     ) {
         fun size(): Long {
-            return files.sumOf(ElfFile::size) + directories.sumOf { it.size()}
+            return files.sumOf(ElfFile::size) + directories.sumOf { it.size() }
         }
 
         fun findDirectory(name: String) = directories.find { it.name == name }

@@ -20,7 +20,7 @@ object Day04 : Day("04", "2", "4") {
                 this.first().first() >= this.last().first() && this.first().last() <= this.last().last()
 
     private fun List<List<Int>>.hasSubContent() =
-        this.first().last() >= this.last().first() && this.first().first() <= this.last().last()  ||
+        this.first().last() >= this.last().first() && this.first().first() <= this.last().last() ||
                 this.first().first() >= this.last().last() && this.first().last() <= this.last().first()
 
 }

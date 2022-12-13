@@ -3,7 +3,7 @@ package day
 import util.FileReader.getExampleList
 import util.FileReader.getInputList
 
-object Day01 : Day("01","24000",  "45000") {
+object Day01 : Day("01", "24000", "45000") {
     override fun examplePartOne() = getMaxElf(getExampleList(day))
     override fun examplePartTwo() = getMaxElves(getExampleList(day))
     override fun solvePartOne() = getMaxElf(getInputList(day))

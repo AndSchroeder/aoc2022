@@ -3,7 +3,7 @@ package day
 import util.FileReader
 
 
-object Day06 : Day("06","11", "26") {
+object Day06 : Day("06", "11", "26") {
     override fun examplePartOne() = FileReader.getExampleList("06").findMarker(4)
     override fun examplePartTwo() = FileReader.getExampleList("06").findMarker(14)
     override fun solvePartOne() = FileReader.getInputList("06").findMarker(4)

@@ -27,6 +27,7 @@ object Day13 : Day("13", "13", "140") {
                 elfList.list.add(newList)
                 parseStep(newList, input.shorten())
             }
+
             input.startsWith("]") -> parseStep(elfList.parent, input.shorten())
             input.startsWith(",") -> parseStep(elfList, input.shorten())
             input.isBlank() -> return
@@ -39,12 +40,12 @@ object Day13 : Day("13", "13", "140") {
 
     sealed class ElfPackage : Comparable<ElfPackage> {
         class ElfNumber(val number: Int) : ElfPackage() {
-            override fun toString()=  number.toString()
+            override fun toString() = number.toString()
         }
 
         class ElfList(val list: MutableList<ElfPackage> = mutableListOf(), val parent: ElfList? = null) :
             ElfPackage() {
-            override fun toString()= "[${list.joinToString(",")}]"
+            override fun toString() = "[${list.joinToString(",")}]"
         }
 
         override fun compareTo(other: ElfPackage): Int = when {

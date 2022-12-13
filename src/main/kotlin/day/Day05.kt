@@ -26,30 +26,30 @@ object Day05 : Day("05", "CMZ", "MCD") {
         this.getStackData().toInputList().toStack() to this.getOperationsData().getOperations()
 
     private fun handleOperationOne(stacks: List<ArrayDeque<String>>, operations: Triple<Int, Int, Int>) {
-        val (times, from, to ) = operations
+        val (times, from, to) = operations
         repeat(times) {
             stacks[to].addFirst(stacks[from].removeFirst())
         }
     }
 
     private fun handleOperationTwo(stacks: List<ArrayDeque<String>>, operations: Triple<Int, Int, Int>) {
-        val (times, from, to ) = operations
+        val (times, from, to) = operations
         stacks[from].take(times).reversed().forEach {
             stacks[to].addFirst(it)
             stacks[from].removeFirst()
         }
     }
 
-    private fun List<String>.getStackData() = this.filter{ it.contains("[")}
+    private fun List<String>.getStackData() = this.filter { it.contains("[") }
 
-    private fun List<String>.getOperationsData() = this.filter{ it.contains("move")}
+    private fun List<String>.getOperationsData() = this.filter { it.contains("move") }
 
     private fun List<String>.toInputList() =
-        this.getStackData().map { row -> row.chunked(4).map { entry -> entry.replace("""\W""".toRegex(),"") } }
+        this.getStackData().map { row -> row.chunked(4).map { entry -> entry.replace("""\W""".toRegex(), "") } }
 
     private fun List<List<String>>.toStack(): MutableList<ArrayDeque<String>> {
-        val stacks = MutableList(this.maxOf { it.size }) {ArrayDeque<String>()}
-        this.forEach {row ->
+        val stacks = MutableList(this.maxOf { it.size }) { ArrayDeque<String>() }
+        this.forEach { row ->
             row.forEachIndexed { index, entry ->
                 if (entry.isNotBlank()) {
                     stacks[index].addLast(entry)
@@ -59,9 +59,9 @@ object Day05 : Day("05", "CMZ", "MCD") {
         return stacks
     }
 
-    private fun List<String>.getOperations() = this.map {it.toOperationInput()}
+    private fun List<String>.getOperations() = this.map { it.toOperationInput() }
 
     private fun String.toOperationInput() = this.split("""\D""".toRegex()).filter(String::isNotBlank).run {
-        Triple(get(0).toInt(), get(1).toInt() - 1, get(2).toInt() -1)
+        Triple(get(0).toInt(), get(1).toInt() - 1, get(2).toInt() - 1)
     }
 }

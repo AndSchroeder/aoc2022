@@ -12,7 +12,7 @@ object Day02 : Day("02", "15", "12") {
     private fun pointsPlay(list: List<String>) = list.map(this::matchWithPlay).sum().toString()
     private fun pointsOutcome(list: List<String>) = list.map(this::matchWithOutcome).sum().toString()
 
-    private fun matchWithPlay(match: String) = when(match) {
+    private fun matchWithPlay(match: String) = when (match) {
         "A X" -> 4 // 1 + 3
         "A Y" -> 8 // 2 + 6
         "A Z" -> 3 // 3 + 0
@@ -25,7 +25,7 @@ object Day02 : Day("02", "15", "12") {
         else -> 0
     }
 
-    private fun matchWithOutcome(match: String) = when(match) {
+    private fun matchWithOutcome(match: String) = when (match) {
         "A X" -> 3 // 3 + 0
         "A Y" -> 4 // 1 + 3
         "A Z" -> 8 // 2 + 6
