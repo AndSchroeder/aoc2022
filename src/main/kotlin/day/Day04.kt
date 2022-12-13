@@ -1,13 +1,10 @@
 package day
 
-import util.FileReader.getExampleList
-import util.FileReader.getInputList
-
 object Day04 : Day("04", "2", "4") {
-    override fun examplePartOne() = getExampleList(day).getPairs().countSubRange()
-    override fun examplePartTwo() = getExampleList(day).getPairs().countSubContent()
-    override fun solvePartOne() = getInputList(day).getPairs().countSubRange()
-    override fun solvePartTwo() = getInputList(day).getPairs().countSubContent()
+    override fun examplePartOne() = getExampleList().getPairs().countSubRange()
+    override fun examplePartTwo() = getExampleList().getPairs().countSubContent()
+    override fun solvePartOne() = getInputList().getPairs().countSubRange()
+    override fun solvePartTwo() = getInputList().getPairs().countSubContent()
 
     private fun List<String>.getPairs() =
         this.map { team -> team.split(",").map { borders -> borders.split("-").map { border -> border.toInt() } } }

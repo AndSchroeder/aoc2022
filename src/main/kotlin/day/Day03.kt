@@ -1,13 +1,10 @@
 package day
 
-import util.FileReader.getExampleList
-import util.FileReader.getInputList
-
 object Day03 : Day("03", "157", "70") {
-    override fun examplePartOne() = getExampleList(day).getCharScoresOne()
-    override fun examplePartTwo() = getExampleList(day).getCharScoresTwo()
-    override fun solvePartOne() = getInputList(day).getCharScoresOne()
-    override fun solvePartTwo() = getInputList(day).getCharScoresTwo()
+    override fun examplePartOne() = getExampleList().getCharScoresOne()
+    override fun examplePartTwo() = getExampleList().getCharScoresTwo()
+    override fun solvePartOne() = getInputList().getCharScoresOne()
+    override fun solvePartTwo() = getInputList().getCharScoresTwo()
 
     private fun List<String>.getCharScoresOne() = this.sumOf { it.splitAtHalf().inBoth().score() }.toString()
 

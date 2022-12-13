@@ -1,13 +1,12 @@
 package day
 
-import util.FileReader
 import kotlin.math.absoluteValue
 
 object Day09 : Day("09", "13", "1") {
-    override fun examplePartOne() = RopeGrid(FileReader.getExampleList(day)).solveOne()
-    override fun examplePartTwo() = RopeGrid(FileReader.getExampleList(day)).solveTwo()
-    override fun solvePartOne() = RopeGrid(FileReader.getInputList(day)).solveOne()
-    override fun solvePartTwo() = RopeGrid(FileReader.getInputList(day)).solveTwo()
+    override fun examplePartOne() = RopeGrid(getExampleList()).solveOne()
+    override fun examplePartTwo() = RopeGrid(getExampleList()).solveTwo()
+    override fun solvePartOne() = RopeGrid(getInputList()).solveOne()
+    override fun solvePartTwo() = RopeGrid(getInputList()).solveTwo()
 
     class RopeGrid(private val input: List<String>) {
 

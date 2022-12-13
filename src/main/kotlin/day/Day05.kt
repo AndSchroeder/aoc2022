@@ -1,13 +1,10 @@
 package day
 
-import util.FileReader
-
-
 object Day05 : Day("05", "CMZ", "MCD") {
-    override fun examplePartOne() = FileReader.getExampleList(day).organizeOne()
-    override fun examplePartTwo() = FileReader.getExampleList(day).organizeTwo()
-    override fun solvePartOne() = FileReader.getInputList(day).organizeOne()
-    override fun solvePartTwo() = FileReader.getInputList(day).organizeTwo()
+    override fun examplePartOne() = getExampleList().organizeOne()
+    override fun examplePartTwo() = getExampleList().organizeTwo()
+    override fun solvePartOne() = getInputList().organizeOne()
+    override fun solvePartTwo() = getInputList().organizeTwo()
 
 
     private fun List<String>.organizeOne(): String {

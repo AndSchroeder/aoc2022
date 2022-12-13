@@ -1,12 +1,10 @@
 package day
 
-import util.FileReader
-
 object Day11 : Day("11", "10605", "2713310158") {
-    override fun examplePartOne() = FileReader.getExampleList(day).readMonkeys().playTimes(20).solve()
-    override fun examplePartTwo() = FileReader.getExampleList(day).readMonkeys().playTimes(10_000, true).solve()
-    override fun solvePartOne() = FileReader.getInputList(day).readMonkeys().playTimes(20).solve()
-    override fun solvePartTwo() = FileReader.getInputList(day).readMonkeys().playTimes(10_000, true).solve()
+    override fun examplePartOne() = getExampleList().readMonkeys().playTimes(20).solve()
+    override fun examplePartTwo() = getExampleList().readMonkeys().playTimes(10_000, true).solve()
+    override fun solvePartOne() = getInputList().readMonkeys().playTimes(20).solve()
+    override fun solvePartTwo() = getInputList().readMonkeys().playTimes(10_000, true).solve()
 
     private fun List<String>.readMonkeys() = chunked(7).map(::readMonkey)
 

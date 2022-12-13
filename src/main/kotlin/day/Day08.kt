@@ -1,12 +1,10 @@
 package day
 
-import util.FileReader
-
 object Day08 : Day("08", "21", "8") {
-    override fun examplePartOne() = FileReader.getExampleList(day).getGrid().solveOne()
-    override fun examplePartTwo() = FileReader.getExampleList(day).getGrid().solveTwo()
-    override fun solvePartOne() = FileReader.getInputList(day).getGrid().solveOne()
-    override fun solvePartTwo() = FileReader.getInputList(day).getGrid().solveTwo()
+    override fun examplePartOne() = getExampleList().getGrid().solveOne()
+    override fun examplePartTwo() = getExampleList().getGrid().solveTwo()
+    override fun solvePartOne() = getInputList().getGrid().solveOne()
+    override fun solvePartTwo() = getInputList().getGrid().solveTwo()
 
     private fun List<String>.getGrid() = this.map { row -> row.toList().map { value -> value.toString().toInt() } }
 

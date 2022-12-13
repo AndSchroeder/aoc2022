@@ -1,7 +1,5 @@
 package day
 
-import util.FileReader
-
 object Day10 : Day(
     "10", "13140", "##..##..##..##..##..##..##..##..##..##..\n" +
             "###...###...###...###...###...###...###.\n" +
@@ -10,10 +8,10 @@ object Day10 : Day(
             "######......######......######......####\n" +
             "#######.......#######.......#######....."
 ) {
-    override fun examplePartOne() = FileReader.getExampleList(day).solveOne()
-    override fun examplePartTwo() = FileReader.getExampleList(day).solveTwo()
-    override fun solvePartOne() = FileReader.getInputList(day).solveOne()
-    override fun solvePartTwo() = FileReader.getInputList(day).solveTwo()
+    override fun examplePartOne() = getExampleList().solveOne()
+    override fun examplePartTwo() = getExampleList().solveTwo()
+    override fun solvePartOne() = getInputList().solveOne()
+    override fun solvePartTwo() = getInputList().solveTwo()
 
 
     private fun List<String>.solveOne() = ElfMachine().operate(this).solveOne()

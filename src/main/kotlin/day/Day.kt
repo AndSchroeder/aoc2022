@@ -1,5 +1,7 @@
 package day
 
+import util.FileReader
+
 abstract class Day(
     val day: String,
     val examplePartOneSolution: String,
@@ -9,4 +11,7 @@ abstract class Day(
     abstract fun examplePartTwo(): String
     abstract fun solvePartOne(): String
     abstract fun solvePartTwo(): String
+
+    fun getExampleList() = FileReader.getExampleList(day)
+    fun getInputList() = FileReader.getInputList(day)
 }

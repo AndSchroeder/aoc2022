@@ -1,13 +1,10 @@
 package day
 
-import util.FileReader.getExampleList
-import util.FileReader.getInputList
-
 object Day02 : Day("02", "15", "12") {
-    override fun examplePartOne() = pointsPlay(getExampleList(day))
-    override fun examplePartTwo() = pointsOutcome(getExampleList(day))
-    override fun solvePartOne() = pointsPlay(getInputList(day))
-    override fun solvePartTwo() = pointsOutcome(getInputList(day))
+    override fun examplePartOne() = pointsPlay(getExampleList())
+    override fun examplePartTwo() = pointsOutcome(getExampleList())
+    override fun solvePartOne() = pointsPlay(getInputList())
+    override fun solvePartTwo() = pointsOutcome(getInputList())
 
     private fun pointsPlay(list: List<String>) = list.map(this::matchWithPlay).sum().toString()
     private fun pointsOutcome(list: List<String>) = list.map(this::matchWithOutcome).sum().toString()
