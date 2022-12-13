@@ -2,16 +2,11 @@ package day
 
 import util.FileReader
 
-object Day13 : Day {
-    override val examplePartOneSolution: String = "13"
-    override val examplePartTwoSolution: String = "140"
-
-    override fun examplePartOne() = FileReader.getExampleList("13").solveOne()
-        .apply { check(this == examplePartOneSolution) }
-    override fun examplePartTwo() = FileReader.getExampleList("13").solveTwo()
-        .apply { check(this == examplePartTwoSolution) }
-    override fun solvePartOne() = FileReader.getInputList("13").solveOne()
-    override fun solvePartTwo() = FileReader.getInputList("13").solveTwo()
+object Day13 : Day("13", "13", "140") {
+    override fun examplePartOne() = FileReader.getExampleList(day).solveOne()
+    override fun examplePartTwo() = FileReader.getExampleList(day).solveTwo()
+    override fun solvePartOne() = FileReader.getInputList(day).solveOne()
+    override fun solvePartTwo() = FileReader.getInputList(day).solveTwo()
 
     private fun List<String>.solveOne() = this.chunked(3).mapIndexed { index, chunk ->
         index + 1 to (chunk[0].parse() <= chunk[1].parse())

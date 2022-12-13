@@ -2,18 +2,11 @@ package day
 
 import util.FileReader
 
-object Day12 : Day {
-    override val examplePartOneSolution: String = "31"
-    override val examplePartTwoSolution: String = "29"
-
-    override fun examplePartOne() = FileReader.getExampleList("12").solve()
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = FileReader.getExampleList("12").solve(true)
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = FileReader.getInputList("12").solve()
-    override fun solvePartTwo() = FileReader.getInputList("12").solve(true)
+object Day12 : Day("12", "31", "29") {
+    override fun examplePartOne() = FileReader.getExampleList(day).solve()
+    override fun examplePartTwo() = FileReader.getExampleList(day).solve(true)
+    override fun solvePartOne() = FileReader.getInputList(day).solve()
+    override fun solvePartTwo() = FileReader.getInputList(day).solve(true)
 
     private fun List<String>.solve(partTwo: Boolean = false): String {
         val grid = HeightGrid()

@@ -2,18 +2,11 @@ package day
 
 import util.FileReader
 
-object Day11 : Day {
-    override val examplePartOneSolution: String = "10605"
-    override val examplePartTwoSolution: String = "2713310158"
-
-    override fun examplePartOne() = FileReader.getExampleList("11").readMonkeys().playTimes(20).solve()
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = FileReader.getExampleList("11").readMonkeys().playTimes(10_000, true).solve()
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = FileReader.getInputList("11").readMonkeys().playTimes(20).solve()
-    override fun solvePartTwo() = FileReader.getInputList("11").readMonkeys().playTimes(10_000, true).solve()
+object Day11 : Day("11", "10605", "2713310158") {
+    override fun examplePartOne() = FileReader.getExampleList(day).readMonkeys().playTimes(20).solve()
+    override fun examplePartTwo() = FileReader.getExampleList(day).readMonkeys().playTimes(10_000, true).solve()
+    override fun solvePartOne() = FileReader.getInputList(day).readMonkeys().playTimes(20).solve()
+    override fun solvePartTwo() = FileReader.getInputList(day).readMonkeys().playTimes(10_000, true).solve()
 
     private fun List<String>.readMonkeys() = chunked(7).map(::readMonkey)
 

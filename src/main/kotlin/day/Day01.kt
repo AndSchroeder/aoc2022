@@ -3,18 +3,11 @@ package day
 import util.FileReader.getExampleList
 import util.FileReader.getInputList
 
-object Day01 : Day {
-    override val examplePartOneSolution: String = "24000"
-    override val examplePartTwoSolution: String = "45000"
-
-    override fun examplePartOne() = getMaxElf(getExampleList("01"))
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = getMaxElves(getExampleList("01"))
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = getMaxElf(getInputList("01"))
-    override fun solvePartTwo() = getMaxElves(getInputList("01"))
+object Day01 : Day("01","24000",  "45000") {
+    override fun examplePartOne() = getMaxElf(getExampleList(day))
+    override fun examplePartTwo() = getMaxElves(getExampleList(day))
+    override fun solvePartOne() = getMaxElf(getInputList(day))
+    override fun solvePartTwo() = getMaxElves(getInputList(day))
 
     private fun getMaxElf(list: List<String>) = getElves(list).max().toString()
 

@@ -3,18 +3,11 @@ package day
 import util.FileReader
 
 
-object Day07 : Day {
-    override val examplePartOneSolution: String = "95437"
-    override val examplePartTwoSolution: String = "24933642"
-
-    override fun examplePartOne() = FileReader.getExampleList("07").interpret().solveOne()
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = FileReader.getExampleList("07").interpret().solveTwo()
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = FileReader.getInputList("07").interpret().solveOne()
-    override fun solvePartTwo() = FileReader.getInputList("07").interpret().solveTwo()
+object Day07 : Day("07", "95437", "24933642") {
+    override fun examplePartOne() = FileReader.getExampleList(day).interpret().solveOne()
+    override fun examplePartTwo() = FileReader.getExampleList(day).interpret().solveTwo()
+    override fun solvePartOne() = FileReader.getInputList(day).interpret().solveOne()
+    override fun solvePartTwo() = FileReader.getInputList(day).interpret().solveTwo()
 
     private var root: ElfDirectory = ElfDirectory("/", parent = null)
     private var current: ElfDirectory = root

@@ -3,18 +3,11 @@ package day
 import util.FileReader
 
 
-object Day05 : Day {
-    override val examplePartOneSolution: String = "CMZ"
-    override val examplePartTwoSolution: String = "MCD"
-
-    override fun examplePartOne() = FileReader.getExampleList("05").organizeOne()
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = FileReader.getExampleList("05").organizeTwo()
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = FileReader.getInputList("05").organizeOne()
-    override fun solvePartTwo() = FileReader.getInputList("05").organizeTwo()
+object Day05 : Day("05", "CMZ", "MCD") {
+    override fun examplePartOne() = FileReader.getExampleList(day).organizeOne()
+    override fun examplePartTwo() = FileReader.getExampleList(day).organizeTwo()
+    override fun solvePartOne() = FileReader.getInputList(day).organizeOne()
+    override fun solvePartTwo() = FileReader.getInputList(day).organizeTwo()
 
 
     private fun List<String>.organizeOne(): String {

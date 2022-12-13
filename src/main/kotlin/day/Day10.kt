@@ -2,23 +2,16 @@ package day
 
 import util.FileReader
 
-object Day10 : Day {
-    override val examplePartOneSolution: String = "13140"
-    override val examplePartTwoSolution: String = "##..##..##..##..##..##..##..##..##..##..\n" +
-            "###...###...###...###...###...###...###.\n" +
-            "####....####....####....####....####....\n" +
-            "#####.....#####.....#####.....#####.....\n" +
-            "######......######......######......####\n" +
-            "#######.......#######.......#######....."
-
-    override fun examplePartOne() = FileReader.getExampleList("10").solveOne()
-        .apply { check(this == examplePartOneSolution) }
-
-    override fun examplePartTwo() = FileReader.getExampleList("10").solveTwo().toString()
-        .apply { check(this == examplePartTwoSolution) }
-
-    override fun solvePartOne() = FileReader.getInputList("10").solveOne()
-    override fun solvePartTwo() = FileReader.getInputList("10").solveTwo()
+object Day10 : Day("10", "13140", "##..##..##..##..##..##..##..##..##..##..\n" +
+        "###...###...###...###...###...###...###.\n" +
+        "####....####....####....####....####....\n" +
+        "#####.....#####.....#####.....#####.....\n" +
+        "######......######......######......####\n" +
+        "#######.......#######.......#######.....") {
+    override fun examplePartOne() = FileReader.getExampleList(day).solveOne()
+    override fun examplePartTwo() = FileReader.getExampleList(day).solveTwo()
+    override fun solvePartOne() = FileReader.getInputList(day).solveOne()
+    override fun solvePartTwo() = FileReader.getInputList(day).solveTwo()
 
 
     private fun List<String>.solveOne() = ElfMachine().operate(this).solveOne()
