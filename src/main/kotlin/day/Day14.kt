@@ -11,7 +11,7 @@ object Day14 : Day("14", "24", "93") {
 
     fun List<String>.solve(withAbyss: Boolean = true): String {
         val grid = parse(withAbyss)
-        return grid.fields.count { it.content == CaveContent.SAND }.toString()
+        return grid.fields.count { it.value.content == CaveContent.SAND }.toString()
     }
 
     private fun List<String>.parse(withAbyss: Boolean) = CaveGrid().also { grid ->
@@ -27,19 +27,19 @@ object Day14 : Day("14", "24", "93") {
         }
     }.apply {
         if (!withAbyss) {
-            val (xMin, xMax) = grid.fields.minBy { it.x }.x to grid.fields.maxBy { it.x }.x
+            val (xMin, xMax) = grid.fields.minBy { it.value.x }.value.x to grid.fields.maxBy { it.value.x }.value.x
             grid.addRockLine(xMin - grid.lowest * 2, grid.lowest + 2, xMax + grid.lowest * 2, grid.lowest + 2)
         }
     }
 
     data class CaveGrid(
-        val fields: MutableSet<CaveField> = mutableSetOf(),
+        val fields: MutableMap<Pair<Int, Int>,CaveField> = mutableMapOf(),
         var lowest: Int = 0,
         var ended: Boolean = false
     ) {
 
         init {
-            fields.add(CaveField(500, 0, CaveContent.START))
+            fields[500 to 0] = CaveField(500, 0, CaveContent.START)
         }
 
         fun addRockLine(xStart: Int, yStart: Int, xEnd: Int, yEnd: Int) = when (xStart) {
@@ -69,12 +69,14 @@ object Day14 : Day("14", "24", "93") {
         ).filter { it.content == CaveContent.AIR || it.content == CaveContent.START }
 
         private fun findOrCreate(x: Int, y: Int) =
-            fields.find { it.x == x && it.y == y } ?: CaveField(x, y, CaveContent.AIR).apply { fields.add(this) }
+            fields[x to y] ?: CaveField(x, y, CaveContent.AIR).apply { fields[x to y] = this }
 
-        private fun start() = fields.firstOrNull() { it.content == CaveContent.START }
+        private fun start() = fields[500 to 0]?.let { if (it.content == CaveContent.START) it else null }
 
-        private fun addRock(x: Int, y: Int) =
-            fields.add(CaveField(x, y, CaveContent.ROCK)).apply { lowest = max(lowest, y) }
+        private fun addRock(x: Int, y: Int)  {
+            fields[x to y] = CaveField(x, y, CaveContent.ROCK).apply { lowest = max(lowest, y) }
+        }
+
     }
 
     data class CaveField(val x: Int, val y: Int, var content: CaveContent)
