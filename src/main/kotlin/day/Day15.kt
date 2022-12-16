@@ -61,7 +61,6 @@ object Day15 : Day("15", "26", "56000011") {
             }.filter { it.first in min..max && it.second in min..max }
     }
 
-
     data class SensorCoordinate(
         val x: Int,
         val y: Int,
