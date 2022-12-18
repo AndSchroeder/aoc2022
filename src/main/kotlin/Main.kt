@@ -7,7 +7,7 @@ fun main() {
         Day06, Day07, Day08, Day09, Day10,
         Day11, Day12, Day13, Day14, Day15
     )
-    listOf(Day17).forEach(::solveDay)
+    listOf(Day18).forEach(::solveDay)
 }
 
 private fun solveDay(day: Day) {
